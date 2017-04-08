@@ -186,7 +186,7 @@ BOOL CTank2017Dlg::OnInitDialog()
 	SetTimer( IDI_TANK2017_UPDATE, 30, NULL );
 
 	// ≤•∑≈±≥æ∞“Ù¿÷
-	int nIndex = rand() % 2;
+	int nIndex = 1;//rand() % 2;
 	TCHAR szBgFile[128] = { 0 };
 	_stprintf_s( szBgFile, _countof(szBgFile), _T("res/bg%d.mp3"), nIndex );
 	Tank2017::PlayMusic( szBgFile, true );
