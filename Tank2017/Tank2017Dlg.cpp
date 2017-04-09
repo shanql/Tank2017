@@ -60,9 +60,6 @@ CTank2017Dlg::CTank2017Dlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CTank2017Dlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-	//m_pPlayer1 = nullptr;
-	m_nGameWidth = 1;
-	m_nGameHeight = 1;
 }
 
 void CTank2017Dlg::DoDataExchange(CDataExchange* pDX)
@@ -75,7 +72,6 @@ BEGIN_MESSAGE_MAP(CTank2017Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_CLOSE()
-	ON_WM_KEYDOWN()
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -118,60 +114,36 @@ BOOL CTank2017Dlg::OnInitDialog()
 	ModifyStyle( WS_THICKFRAME, 0 );
 
 
-	// 加上标题栏及边框大小，让网络大小刚好是客户区大小的整数倍
-	int nCyCaption = GetSystemMetrics( SM_CYCAPTION );
-	int nCyBorder = GetSystemMetrics( SM_CYBORDER );
-	int nCyFrame = GetSystemMetrics( SM_CYFRAME );
-	int nCxFrame = GetSystemMetrics( SM_CXFRAME );
-	int nCxBorder = GetSystemMetrics( SM_CXBORDER );
+	//计算边框大小
+	CRect windowRect;
+	CRect clientRect;
+	GetWindowRect( windowRect );
+	GetClientRect( clientRect );
+	int nXBorder = windowRect.Width() - clientRect.Width();
+	int nYBorder = windowRect.Height() - clientRect.Height();
 
-	int nWidth =  ( 2 * ::GetSystemMetrics(SM_CXSCREEN) ) / 3; 
-	int nHeight = ( 3 * ::GetSystemMetrics(SM_CYSCREEN) ) / 4; 
-
-	
-
-
-	MoveWindow( 0, 0, nWidth, nHeight );
+	//设置窗口大小
+	int nWidth = 940;		//窗口宽
+	int nHeight = 680;		//窗口高
+	int nGameInfoWidth = 204; //游戏信息视图
+	MoveWindow( 0, 0, nWidth + nXBorder, nHeight + nYBorder );
 	CenterWindow();
 
+	//游戏视图
+	m_GameView.Create( NULL, NULL, WS_VISIBLE|WS_CHILD, 
+		CRect( 0, 0, nWidth-nGameInfoWidth, nHeight), this, 0 );
+	m_GameView.SetWorld( &m_World );
+	m_GameView.SetGamePlayer( &m_GamePlayer );
 
-	CRect clientRect;
-	GetClientRect( &clientRect );
-
-	// 信息区初始化
-	int nInfoViewWidth = 200;
-	int nInfoViewHeigth = clientRect.Height();
-	CRect rcGameInfoView(
-		clientRect.Width() - nInfoViewWidth,
-		0, 
-		clientRect.Width(),
-		nInfoViewHeigth );
+	//信息视图
 	m_GameInfoView.Create( NULL, NULL, WS_VISIBLE|WS_CHILD, 
-		rcGameInfoView, this, 0 );
+		CRect( nWidth - nGameInfoWidth, 0, nWidth, nHeight), this, 0 );
 	m_GameInfoView.SetGamePlayer( &m_GamePlayer );
 
 
-	//游戏区大小 
-	m_nGameWidth = clientRect.Width() - nInfoViewWidth;
-	m_nGameHeight = clientRect.Height();
-
-	//按钮创建
-// 	m_btnStart.Create(_T("开始"), WS_VISIBLE | BS_PUSHBUTTON,
-// 		CRect( 100, 100, 150, 120 ), 
-// 		this, IDC_BTN_START );
-
-	// 创建缓冲DC
-	CDC* pDC = this->GetDC();
-	m_MemoryDc.CreateCompatibleDC( pDC );
-	m_MemoryBmp.CreateCompatibleBitmap( pDC,
-		m_nGameWidth, m_nGameHeight );
-	m_MemoryDc.SelectObject( &m_MemoryBmp );
-	this->ReleaseDC(pDC);
-	pDC = nullptr;
-
 	// 世界初始化
-	if ( !m_World.Initialize( m_nGameWidth / Tank2017::gGridUnitSize,
-		m_nGameHeight / Tank2017::gGridUnitSize ) )
+	if ( !m_World.Initialize( (nWidth - nGameInfoWidth) / Tank2017::gGridUnitSize,
+		nHeight / Tank2017::gGridUnitSize ) )
 	{
 		AfxMessageBox( _T("Initialize Map Grid failed!"));
 		return FALSE;
@@ -180,10 +152,8 @@ BOOL CTank2017Dlg::OnInitDialog()
 	// 创建玩家
 	m_GamePlayer.SetWorld( &m_World );
 	m_GamePlayer.Respawn();
-	//m_pPlayer1 = (PlayerTank*)(m_World.CreateEntity( enPlayerTank, 0, 0, 1, enDirRight));
-
-
-	SetTimer( IDI_TANK2017_UPDATE, 30, NULL );
+	
+	
 
 	// 播放背景音乐
 	int nIndex = 1;//rand() % 2;
@@ -191,6 +161,9 @@ BOOL CTank2017Dlg::OnInitDialog()
 	_stprintf_s( szBgFile, _countof(szBgFile), _T("res/bg%d.mp3"), nIndex );
 	Tank2017::PlayMusic( szBgFile, true );
 
+
+	// 主逻辑定时器
+	SetTimer( IDI_TANK2017_UPDATE, 30, NULL );
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -233,16 +206,6 @@ void CTank2017Dlg::OnPaint()
 	}
 	else
 	{
-		CPaintDC dc(this);
-		//CDC* dc = this->GetDC();
-		dc.BitBlt( 0, 0, m_nGameWidth, m_nGameHeight, &m_MemoryDc,
-			0, 0, SRCCOPY );
-		//this->ReleaseDC( dc );
-
-// 		CRect clientRect;
-// 		GetClientRect( clientRect );
-// 		ValidateRect( clientRect );
-		//buffDc.SelectObject( pOldBmp );
 	}
 }
 
@@ -280,14 +243,6 @@ void CTank2017Dlg::OnClose()
 }
 
 
-void CTank2017Dlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
-{
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
-
-	CDialogEx::OnKeyDown(nChar, nRepCnt, nFlags);
-}
-
-
 BOOL CTank2017Dlg::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: 在此添加专用代码和/或调用基类
@@ -308,23 +263,17 @@ void CTank2017Dlg::OnTimer(UINT_PTR nIDEvent)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if ( nIDEvent == IDI_TANK2017_UPDATE )
 	{
-		//绘制函数
-		CRect rect;
-		GetClientRect(&rect);
-		m_MemoryDc.FillSolidRect( 0, 0, m_nGameWidth, 
-			m_nGameHeight, RGB( 0, 0, 0 ) );
-		m_World.RunDraw( &m_MemoryDc );
-		Invalidate( FALSE );
-		//OnPaint();
+		//更新游戏视图
+		m_GameView.InvalidateRect( NULL, FALSE );
+
+		//更新游戏信息视图
+		m_GameInfoView.InvalidateRect( NULL, FALSE );
 
 		//玩家
 		m_GamePlayer.RunLogic();
 
 		//逻辑函数
 		m_World.RunLogic();
-
-		
-
 	}
 
 	CDialogEx::OnTimer(nIDEvent);

@@ -93,6 +93,9 @@
     <ClInclude Include="MCIPlaySndManager.h">
       <Filter>MCIPlay</Filter>
     </ClInclude>
+    <ClInclude Include="GameView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tank2017.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="MCIPlaySndManager.cpp">
       <Filter>MCIPlay</Filter>
+    </ClCompile>
+    <ClCompile Include="GameView.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

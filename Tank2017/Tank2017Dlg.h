@@ -10,6 +10,7 @@
 #include "BattleWorld.h"
 #include "GamePlayer.h"
 #include "GameInfoView.h"
+#include "GameView.h"
 
 
 // CTank2017Dlg 对话框
@@ -32,15 +33,16 @@ protected:
 
 	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
+	virtual void OnCancel();
+	virtual void OnOK();
+
+
+	DECLARE_MESSAGE_MAP()
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
-	DECLARE_MESSAGE_MAP()
-	virtual void OnCancel();
-	virtual void OnOK();
-public:
 	afx_msg void OnClose();
-	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 
 public:
@@ -48,17 +50,11 @@ public:
 
 
 private:
-	GameInfoView m_GameInfoView;
-	GamePlayer m_GamePlayer;
-	BattleWorld m_World;
+	GameView m_GameView;			///< 游戏视图
+	GameInfoView m_GameInfoView;	///< 游戏信息视图
+	GamePlayer m_GamePlayer;		///< 玩家
+	BattleWorld m_World;			///< 世界
 
-	CDC m_MemoryDc;						///< 缓冲区dc
-	CBitmap m_MemoryBmp;				///< 缓冲区位图
-	int m_nGameWidth;					///< 游戏区宽
-	int m_nGameHeight;					///< 游戏区高
-
-	CButton	m_btnStart;					///< 开始按钮
-
-public:
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	//CButton	m_btnStart;					///< 开始按钮
+	
 };

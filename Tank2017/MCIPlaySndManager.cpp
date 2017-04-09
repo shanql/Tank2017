@@ -5,33 +5,33 @@
 
 MCIPlaySndManager::MCIPlaySndManager(void)
 {
+	
+}
+
+
+MCIPlaySndManager::~MCIPlaySndManager(void)
+{
 	for( auto it = m_PlayObjArrayActive.begin(); 
 		it != m_PlayObjArrayActive.end();++it )
 	{
 		if ( *it )
 		{
+			(*it)->DestroyWindow();
 			delete (*it);
 		}
 	}
 	m_PlayObjArrayActive.clear();
-
-
 
 	for( auto it = m_PlayObjArrayFree.begin(); 
 		it != m_PlayObjArrayFree.end(); ++it )
 	{
 		if ( *it  )
 		{
+			(*it)->DestroyWindow();
 			delete (*it);
 		}
 	}
 	m_PlayObjArrayFree.clear();
-}
-
-
-MCIPlaySndManager::~MCIPlaySndManager(void)
-{
-
 }
 
 MCIPlaySndManager& MCIPlaySndManager::GetInstance()
