@@ -115,6 +115,7 @@
     <ClInclude Include="Entity\OpposingTank.h" />
     <ClInclude Include="Entity\PlayerTank.h" />
     <ClInclude Include="GameInfoView.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GamePlayer.h" />
     <ClInclude Include="GameView.h" />
     <ClInclude Include="GlobalDefine.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="Entity\OpposingTank.cpp" />
     <ClCompile Include="Entity\PlayerTank.cpp" />
     <ClCompile Include="GameInfoView.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GamePlayer.cpp" />
     <ClCompile Include="GameView.cpp" />
     <ClCompile Include="GlobalFunction.cpp" />
