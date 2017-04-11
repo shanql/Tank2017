@@ -22,6 +22,9 @@
     <Filter Include="MCIPlay">
       <UniqueIdentifier>{f7e38b21-1553-4532-b405-844ff38a6410}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{00a0a48b-80c3-4038-b0df-369d3d2a81db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -99,6 +102,21 @@
     <ClInclude Include="GameLogic.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="IGameEventSink.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\StartPanel.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MsgDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\EndPanel.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\PausePanel.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tank2017.cpp">
@@ -160,6 +178,15 @@
     </ClCompile>
     <ClCompile Include="GameLogic.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\StartPanel.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\EndPanel.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\PausePanel.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameLogic.h"
 #include "GamePlayer.h"
+#include "IGameEventSink.h"
 
 
 GameLogic::GameLogic(void)
@@ -14,7 +15,23 @@ GameLogic::~GameLogic(void)
 {
 }
 
-bool GameLogic::Init()
+bool GameLogic::Init( IGameEventSink* pGameEventSink )
+{
+	// 设置事件回调
+	ASSERT( pGameEventSink != nullptr );
+	if ( !pGameEventSink )
+	{
+		return false;
+	}
+	m_pGameEventSink = pGameEventSink;
+
+	// 重置数据
+	ResetData();
+
+	return true;
+}
+
+void GameLogic::ResetData()
 {
 	m_Status = GAME_NULL;
 	m_nCurLevel = 0;
@@ -28,8 +45,6 @@ bool GameLogic::Init()
 		mLevel.m_nPassScore = 10 + i * 5;
 		m_LvDataArray.push_back(mLevel);
 	}
-
-	return true;
 }
 
 void GameLogic::Start()
@@ -42,6 +57,10 @@ void GameLogic::Start()
 
 	m_nCurLevel = 1;
 	m_Status = GAME_RUNNING;
+	if ( m_pGameEventSink )
+	{
+		m_pGameEventSink->OnEventGameStarted();
+	}
 
 }
 
@@ -50,6 +69,10 @@ void GameLogic::Pause()
 	if ( IsStarted() )
 	{
 		m_Status = GAME_PAUSE;
+		if ( m_pGameEventSink )
+		{
+			m_pGameEventSink->OnEventGamePaused();
+		}
 	}
 }
 
@@ -88,7 +111,7 @@ void GameLogic::OnEventScore( GamePlayer* pPlayer )
 	}
 
 	// 判断游戏是否结束
-	if ( GetCurLv() <GetMaxLv() )
+	if ( GetCurLv() < GetMaxLv() )
 	{
 		//继续下一关
 		m_nCurLevel++;
@@ -96,7 +119,11 @@ void GameLogic::OnEventScore( GamePlayer* pPlayer )
 	else
 	{
 		//游戏结束
-
+		m_Status = GAME_OVER;
+		if ( m_pGameEventSink )
+		{
+			m_pGameEventSink->OnEventGameEnded();
+		}
 	}
 
 }

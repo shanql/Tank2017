@@ -3,6 +3,7 @@
 #include "PlayerTank.h"
 #include "GlobalFunction.h"
 #include "Resource.h"
+#include "MsgDefine.h"
 
 
 GamePlayer::GamePlayer(void)

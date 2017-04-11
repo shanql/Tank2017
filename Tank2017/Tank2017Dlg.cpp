@@ -10,6 +10,8 @@
 #include "AiObject.h"
 #include "OpposingTank.h"
 #include "GlobalFunction.h"
+#include "MsgDefine.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,6 +75,10 @@ BEGIN_MESSAGE_MAP(CTank2017Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_CLOSE()
 	ON_WM_TIMER()
+	ON_MESSAGE(WM_U_GAME_START, &CTank2017Dlg::OnGameStart)
+	ON_MESSAGE(WM_U_GAME_END, &CTank2017Dlg::OnGameEnd)
+	ON_MESSAGE(WM_U_GAME_PAUSE, &CTank2017Dlg::OnGamePause)
+	ON_MESSAGE(WM_U_GAME_CONTINUE, &CTank2017Dlg::OnGameContinue)
 END_MESSAGE_MAP()
 
 
@@ -140,6 +146,11 @@ BOOL CTank2017Dlg::OnInitDialog()
 		CRect( nWidth - nGameInfoWidth, 0, nWidth, nHeight), this, 0 );
 	m_GameInfoView.SetGamePlayer( &m_GamePlayer );
 
+	//面板
+	m_StartPanel.Create( IDD_START_PANEL, this );
+	m_PausePanel.Create( IDD_PAUSE_PANEL, this );
+	m_EndPanel.Create( IDD_END_PANEL, this );
+
 
 	// 世界初始化
 	if ( !m_World.Initialize( (nWidth - nGameInfoWidth) / Tank2017::gGridUnitSize,
@@ -153,7 +164,8 @@ BOOL CTank2017Dlg::OnInitDialog()
 	m_GamePlayer.SetWorld( &m_World );
 	m_GamePlayer.Respawn();
 	
-	
+	// 游戏逻辑
+	m_GameLogic.Init( this );
 
 	// 播放背景音乐
 	int nIndex = 1;//rand() % 2;
@@ -161,9 +173,12 @@ BOOL CTank2017Dlg::OnInitDialog()
 	_stprintf_s( szBgFile, _countof(szBgFile), _T("res/bg%d.mp3"), nIndex );
 	Tank2017::PlayMusic( szBgFile, true );
 
-
 	// 主逻辑定时器
 	SetTimer( IDI_TANK2017_UPDATE, 30, NULL );
+
+	// 显示开始面板 
+	ShowPanel( m_StartPanel, true );
+	//ShowStartPanel( true );
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -248,6 +263,14 @@ BOOL CTank2017Dlg::PreTranslateMessage(MSG* pMsg)
 	// TODO: 在此添加专用代码和/或调用基类
 	if ( pMsg->message == WM_KEYDOWN )
 	{
+		if ( pMsg->wParam == VK_ESCAPE )
+		{
+			if ( m_GameLogic.IsStarted() && !m_GameLogic.IsPaused() )
+			{
+				//游戏暂停
+				PostMessage( WM_U_GAME_PAUSE, 0, 0 );
+			}
+		}
 		m_GamePlayer.OnEventKeyDown( pMsg->wParam );
 	}
 	else if ( pMsg->message == WM_KEYUP )
@@ -269,12 +292,77 @@ void CTank2017Dlg::OnTimer(UINT_PTR nIDEvent)
 		//更新游戏信息视图
 		m_GameInfoView.InvalidateRect( NULL, FALSE );
 
-		//玩家
-		m_GamePlayer.RunLogic();
+		if ( m_GameLogic.IsStarted() && !m_GameLogic.IsPaused() )
+		{
+			//玩家
+			m_GamePlayer.RunLogic();
 
-		//逻辑函数
-		m_World.RunLogic();
+			//逻辑函数
+			m_World.RunLogic();
+		}
 	}
 
 	CDialogEx::OnTimer(nIDEvent);
+}
+
+
+void CTank2017Dlg::OnEventGameStarted()
+{
+	ShowPanel( m_StartPanel, false );
+}
+
+void CTank2017Dlg::OnEventGamePaused()
+{
+	
+}
+
+void CTank2017Dlg::OnEventGameEnded()
+{
+}
+
+
+void CTank2017Dlg::ShowPanel( CWnd& mPanel, bool bShow )
+{
+	ASSERT( mPanel.m_hWnd != NULL );
+	if ( mPanel.m_hWnd == NULL )
+	{
+		return;
+	}
+
+	mPanel.ShowWindow( bShow );
+
+	if ( bShow )
+	{
+		mPanel.CenterWindow( &m_GameView );
+		mPanel.SetActiveWindow();
+		mPanel.SetForegroundWindow();
+	}
+}
+
+afx_msg LRESULT CTank2017Dlg::OnGameStart(WPARAM wParam, LPARAM lParam)
+{
+	m_GameLogic.Start();
+	return 0;
+}
+
+
+afx_msg LRESULT CTank2017Dlg::OnGameEnd(WPARAM wParam, LPARAM lParam)
+{
+	return 0;
+}
+
+
+afx_msg LRESULT CTank2017Dlg::OnGamePause(WPARAM wParam, LPARAM lParam)
+{
+	m_GameLogic.Pause();
+	ShowPanel( m_PausePanel, true );
+	return 0;
+}
+
+
+afx_msg LRESULT CTank2017Dlg::OnGameContinue(WPARAM wParam, LPARAM lParam)
+{
+	m_GameLogic.Contiune();
+	ShowPanel( m_PausePanel, false );
+	return 0;
 }

@@ -121,14 +121,19 @@
     <ClInclude Include="GlobalDefine.h" />
     <ClInclude Include="GlobalFunction.h" />
     <ClInclude Include="IBulletHitSink.h" />
+    <ClInclude Include="IGameEventSink.h" />
     <ClInclude Include="MapGrid.h" />
     <ClInclude Include="MCIPlaySound.h" />
     <ClInclude Include="MCIPlaySndManager.h" />
+    <ClInclude Include="MsgDefine.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tank2017.h" />
     <ClInclude Include="Tank2017Dlg.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UI\EndPanel.h" />
+    <ClInclude Include="UI\PausePanel.h" />
+    <ClInclude Include="UI\StartPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ai\AiObject.cpp" />
@@ -154,6 +159,9 @@
     </ClCompile>
     <ClCompile Include="Tank2017.cpp" />
     <ClCompile Include="Tank2017Dlg.cpp" />
+    <ClCompile Include="UI\EndPanel.cpp" />
+    <ClCompile Include="UI\PausePanel.cpp" />
+    <ClCompile Include="UI\StartPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tank2017.rc" />

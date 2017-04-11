@@ -1,5 +1,6 @@
 #pragma once
 
+
 /*!
  * \class LevelData 
  *
@@ -35,8 +36,9 @@ enum GameStatus
 };
 
 
-// 前向场景
+// 前向声明 
 class GamePlayer;
+class IGameEventSink;
 
 /*!
  * \class GameLogic
@@ -52,10 +54,17 @@ public:
 	GameLogic(void);
 	virtual ~GameLogic(void);
 
+
 	/**
-	 * @brief 初始数据
+	 * @brief 初始化
+	 * @param pGameEventSink 事件回调
 	*/
-	bool Init();
+	bool Init( IGameEventSink* pGameEventSink );
+
+	/**
+	 * @brief 重置数据
+	*/
+	void ResetData();
 
 	/**
 	 * @brief 开始游戏
@@ -104,34 +113,11 @@ private:
 	 * @brief 获取等级数据
 	*/
 	const LevelData* getLevelData( int nLevel ) const;
-	/**
-	 * @brief 游戏开始事件
-	*/
-	//void onEventStart();
-
-	/**
-	 * @brief 游戏暂停事件
-	*/
-	//void onEventPause();
-
-	/**
-	 * @brief 游戏结束事件
-	*/
-	//void onEventGameEnd();
-
-	/**
-	 * @brief 
-	*/
-	void onEventLevelStart();
-
-	/**
-	 * @brief 
-	*/
-	void onEventLevelEnd();
 
 private:
-	GameStatus m_Status;		///< 游戏状态
-	int m_nCurLevel;			///< 当前游戏等级
+	GameStatus m_Status;			///< 游戏状态
+	int m_nCurLevel;				///< 当前游戏等级
 	LevelDataArray m_LvDataArray;	///< 游戏等级数据
+	IGameEventSink* m_pGameEventSink;	///< 游戏事件回调
 };
 
