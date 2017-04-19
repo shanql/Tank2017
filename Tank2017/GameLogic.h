@@ -62,14 +62,14 @@ public:
 	bool Init( IGameEventSink* pGameEventSink );
 
 	/**
-	 * @brief 重置数据
-	*/
-	void ResetData();
-
-	/**
 	 * @brief 开始游戏
 	*/
 	void Start();
+
+	/**
+	 * @brief 重新开始游戏
+	*/
+	void ReStart();
 
 	/**
 	 * @brief 暂停游戏
@@ -85,7 +85,7 @@ public:
 	/**
 	 * @brief 是否已开始
 	*/
-	bool IsStarted() { return bool(m_Status != GAME_NULL); }
+	bool IsStarted() { return bool(m_Status != GAME_NULL && m_Status != GAME_OVER); }
 
 	/**
 	 * @brief 是否暂停
@@ -107,6 +107,11 @@ public:
 	*/
 	int GetCurLv() const;
 
+	/**
+	 * @brief 获取当前过关分数
+	*/
+	int GetCurPassScore() const;
+
 
 private:
 	/**
@@ -114,10 +119,23 @@ private:
 	*/
 	const LevelData* getLevelData( int nLevel ) const;
 
+	/**
+	 * @brief 改变游戏状态
+	*/
+	void changeStatus( GameStatus newStatus );
+
+	/**
+	 * @brief 重置数据
+	*/
+	void resetData();
+
 private:
 	GameStatus m_Status;			///< 游戏状态
 	int m_nCurLevel;				///< 当前游戏等级
 	LevelDataArray m_LvDataArray;	///< 游戏等级数据
 	IGameEventSink* m_pGameEventSink;	///< 游戏事件回调
 };
+
+
+extern GameLogic g_GameLogic;	///< 全局变量
 

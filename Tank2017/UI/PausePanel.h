@@ -1,8 +1,15 @@
 #pragma once
 
 
-// PausePanel ¶Ô»°¿ò
 
+/*!
+ * \class PausePanel
+ *
+ * \brief ÔÝÍ£Ãæ°å
+ *
+ * \author shanql
+ * \date 2017/04/12
+ */
 class PausePanel : public CDialogEx
 {
 	DECLARE_DYNAMIC(PausePanel)

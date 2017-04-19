@@ -1,8 +1,15 @@
 #pragma once
 
 
-// EndPanel 对话框
 
+/*!
+ * \class EndPanel
+ *
+ * \brief 结束面板
+ *
+ * \author shanql
+ * \date 2017/04/12
+ */
 class EndPanel : public CDialogEx
 {
 	DECLARE_DYNAMIC(EndPanel)

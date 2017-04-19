@@ -39,7 +39,8 @@ END_MESSAGE_MAP()
 void EndPanel::OnOK()
 {
 	// TODO: 在此添加专用代码和/或调用基类
-	AfxGetMainWnd()->SendMessage( WM_U_GAME_START, 0, 0 );
+	//AfxGetMainWnd()->SendMessage( WM_U_GAME_START, 0, 0 );
+	g_GameLogic.ReStart();
 
 	//CDialogEx::OnOK();
 }

@@ -47,6 +47,11 @@ public:
 	int GetScore() const { return m_nScore; }
 
 	/**
+	 * @brief 重置得分
+	*/
+	void ResetScore() { m_nScore = 0; }
+
+	/**
 	 * @brief 获取重生次数
 	*/
 	int GetRespawnCnt() const { return m_nRespawnCnt; }

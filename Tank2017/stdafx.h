@@ -37,6 +37,7 @@
 #include <string>
 #include <vector>
 #include "GlobalDefine.h"
+#include "GameLogic.h"
 
 
 

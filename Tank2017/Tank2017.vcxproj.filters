@@ -33,9 +33,6 @@
     <ClInclude Include="Tank2017.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Tank2017Dlg.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -90,12 +87,6 @@
     <ClInclude Include="Entity\EntityBorder.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="MCIPlaySound.h">
-      <Filter>MCIPlay</Filter>
-    </ClInclude>
-    <ClInclude Include="MCIPlaySndManager.h">
-      <Filter>MCIPlay</Filter>
-    </ClInclude>
     <ClInclude Include="GameView.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -117,12 +108,18 @@
     <ClInclude Include="UI\PausePanel.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="GameFrame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MCIPlay\MCIPlaySndManager.h">
+      <Filter>MCIPlay</Filter>
+    </ClInclude>
+    <ClInclude Include="MCIPlay\MCIPlaySound.h">
+      <Filter>MCIPlay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tank2017.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Tank2017Dlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -167,12 +164,6 @@
     <ClCompile Include="Entity\EntityBorder.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
-    <ClCompile Include="MCIPlaySound.cpp">
-      <Filter>MCIPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="MCIPlaySndManager.cpp">
-      <Filter>MCIPlay</Filter>
-    </ClCompile>
     <ClCompile Include="GameView.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -187,6 +178,15 @@
     </ClCompile>
     <ClCompile Include="UI\PausePanel.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFrame.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MCIPlay\MCIPlaySndManager.cpp">
+      <Filter>MCIPlay</Filter>
+    </ClCompile>
+    <ClCompile Include="MCIPlay\MCIPlaySound.cpp">
+      <Filter>MCIPlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

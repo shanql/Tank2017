@@ -49,20 +49,20 @@ void GamePlayer::OnEventKeyDown( int key )
 	DWORD dwCurrentTick = GetCurrentTime();
 	switch( key )
 	{
-	case VK_LEFT:
+	case 'A':
 		{
 			m_bMoveKeyDown = TRUE;
 			if ( m_pTank->GetDir() != enDirLeft )
 			{
 				m_pTank->SetDir( enDirLeft );
 			}
-// 			CString strLog;
-// 			strLog.Format( _T("Left key down %ld\n"), dwCurrentTick );
-// 			TRACE( strLog );
+			CString strLog;
+			strLog.Format( _T("Left key down %ld\n"), dwCurrentTick );
+			TRACE( strLog );
 			break;
 		}
 
-	case VK_RIGHT:
+	case 'D':
 		{
 			m_bMoveKeyDown = TRUE;
 			if ( m_pTank->GetDir() != enDirRight )
@@ -75,7 +75,7 @@ void GamePlayer::OnEventKeyDown( int key )
 // 			TRACE( strLog );
 			break;
 		}
-	case VK_UP:
+	case 'W':
 		{
 			m_bMoveKeyDown = TRUE;
 			if ( m_pTank->GetDir() != enDirUp )
@@ -84,7 +84,7 @@ void GamePlayer::OnEventKeyDown( int key )
 			}
 			break;
 		}
-	case VK_DOWN:
+	case 'S':
 		{
 			m_bMoveKeyDown = TRUE;
 			if ( m_pTank->GetDir() != enDirDown )
@@ -93,7 +93,7 @@ void GamePlayer::OnEventKeyDown( int key )
 			}
 			break;
 		}
-	case VK_SPACE:
+	case 'J':
 		{
 			//暂时只能拥有一颗子弹， PlayGameSound在同一时刻只能播一个
 			if ( (int)(dwCurrentTick - m_dwFireLastTick) > m_nFireCutdown &&
@@ -119,10 +119,14 @@ void GamePlayer::OnEventKeyUp( int key )
 {
 	switch( key )
 	{
-	case VK_DOWN:
-	case VK_UP:
-	case VK_LEFT:
-	case VK_RIGHT:
+// 	case VK_DOWN:
+// 	case VK_UP:
+// 	case VK_LEFT:
+// 	case VK_RIGHT:
+	case 'W':
+	case 'A':
+	case 'S':
+	case 'D':
 		{
 			m_bMoveKeyDown = false;
 			break;
@@ -181,5 +185,6 @@ void GamePlayer::OnEventKillTarget( Entity* pKillTarget )
 	if ( pKillTarget->GetType() == enOpposingTank )
 	{
 		++m_nScore;
+		g_GameLogic.OnEventScore(this);
 	}
 }
