@@ -4,7 +4,7 @@
 #include <mciapi.h>
 
 #include "GlobalFunction.h"
-#include "MCIPlaySndManager.h"
+#include "MCIPlay/MCIPlaySndManager.h"
 
 
 namespace Tank2017

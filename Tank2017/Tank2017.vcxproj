@@ -114,20 +114,26 @@
     <ClInclude Include="Entity\EntityBorder.h" />
     <ClInclude Include="Entity\OpposingTank.h" />
     <ClInclude Include="Entity\PlayerTank.h" />
+    <ClInclude Include="GameFrame.h" />
     <ClInclude Include="GameInfoView.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GamePlayer.h" />
     <ClInclude Include="GameView.h" />
     <ClInclude Include="GlobalDefine.h" />
     <ClInclude Include="GlobalFunction.h" />
     <ClInclude Include="IBulletHitSink.h" />
+    <ClInclude Include="IGameEventSink.h" />
     <ClInclude Include="MapGrid.h" />
-    <ClInclude Include="MCIPlaySound.h" />
-    <ClInclude Include="MCIPlaySndManager.h" />
+    <ClInclude Include="MCIPlay\MCIPlaySndManager.h" />
+    <ClInclude Include="MCIPlay\MCIPlaySound.h" />
+    <ClInclude Include="MsgDefine.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tank2017.h" />
-    <ClInclude Include="Tank2017Dlg.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UI\EndPanel.h" />
+    <ClInclude Include="UI\PausePanel.h" />
+    <ClInclude Include="UI\StartPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ai\AiObject.cpp" />
@@ -139,19 +145,23 @@
     <ClCompile Include="Entity\EntityBorder.cpp" />
     <ClCompile Include="Entity\OpposingTank.cpp" />
     <ClCompile Include="Entity\PlayerTank.cpp" />
+    <ClCompile Include="GameFrame.cpp" />
     <ClCompile Include="GameInfoView.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GamePlayer.cpp" />
     <ClCompile Include="GameView.cpp" />
     <ClCompile Include="GlobalFunction.cpp" />
     <ClCompile Include="MapGrid.cpp" />
-    <ClCompile Include="MCIPlaySound.cpp" />
-    <ClCompile Include="MCIPlaySndManager.cpp" />
+    <ClCompile Include="MCIPlay\MCIPlaySndManager.cpp" />
+    <ClCompile Include="MCIPlay\MCIPlaySound.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Tank2017.cpp" />
-    <ClCompile Include="Tank2017Dlg.cpp" />
+    <ClCompile Include="UI\EndPanel.cpp" />
+    <ClCompile Include="UI\PausePanel.cpp" />
+    <ClCompile Include="UI\StartPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tank2017.rc" />
