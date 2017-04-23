@@ -65,10 +65,10 @@
     <ClCompile Include="..\..\Tank2017\GlobalFunction.cpp">
       <Filter>extern_depends</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tank2017\MCIPlaySndManager.cpp">
+    <ClCompile Include="..\..\Tank2017\MCIPlay\MCIPlaySndManager.cpp">
       <Filter>extern_depends</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tank2017\MCIPlaySound.cpp">
+    <ClCompile Include="..\..\Tank2017\MCIPlay\MCIPlaySound.cpp">
       <Filter>extern_depends</Filter>
     </ClCompile>
   </ItemGroup>

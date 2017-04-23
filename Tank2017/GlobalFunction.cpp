@@ -5,6 +5,7 @@
 
 #include "GlobalFunction.h"
 #include "MCIPlay/MCIPlaySndManager.h"
+#include "GlobalDefine.h"
 
 
 namespace Tank2017
@@ -40,5 +41,15 @@ namespace Tank2017
 		}
 
 		MCIPlaySndManager::GetInstance().StopGameSound( pszFileName );
+	}
+
+	int ToMapSize( int nScreenSize )
+	{
+		return (nScreenSize+Tank2017::gGridUnitSize-1) / Tank2017::gGridUnitSize;
+	}
+
+	int ToScreenSize( int nMapSize )
+	{
+		return nMapSize * Tank2017::gGridUnitSize;
 	}
 }
