@@ -110,8 +110,8 @@
     <ClInclude Include="tst_PlaySoundDlg.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Tank2017\MCIPlaySndManager.cpp" />
-    <ClCompile Include="..\..\Tank2017\MCIPlaySound.cpp" />
+    <ClCompile Include="..\..\Tank2017\MCIPlay\MCIPlaySndManager.cpp" />
+    <ClCompile Include="..\..\Tank2017\MCIPlay\MCIPlaySound.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

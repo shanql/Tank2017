@@ -13,18 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="extern_depends">
-      <UniqueIdentifier>{9d7cd5a0-a771-4fa4-8299-91d0073d4eac}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tst_PlaySound.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="tst_PlaySoundDlg.h">
+    <ClInclude Include="MapEditor.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -36,36 +30,33 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="MapEditorWnd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tst_PlaySound.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="tst_PlaySoundDlg.cpp">
+    <ClCompile Include="MapEditor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tank2017\MCIPlay\MCIPlaySndManager.cpp">
-      <Filter>extern_depends</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tank2017\MCIPlay\MCIPlaySound.cpp">
-      <Filter>extern_depends</Filter>
+    <ClCompile Include="MapEditorWnd.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="tst_PlaySound.rc">
+    <ResourceCompile Include="MapEditor.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\tst_PlaySound.rc2">
+    <None Include="res\MapEditor.rc2">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\tst_PlaySound.ico">
+    <Image Include="res\MapEditor.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

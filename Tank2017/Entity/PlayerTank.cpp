@@ -2,6 +2,7 @@
 #include "PlayerTank.h"
 #include "../MapGrid.h"
 #include "../BattleWorld.h"
+#include "GlobalFunction.h"
 
 
 PlayerTank::PlayerTank(void)
@@ -121,29 +122,31 @@ bool PlayerTank::Fire()
 
 	// 获取子弹位置及方向 
 	POINT mPos = this->GetPos();
+	int nBulletH = Tank2017::ToMapSize( Tank2017::gBulletScreenH); // Tank2017::gBulletHeight / Tank2017::gGridUnitSize;
+	int nBulletW = Tank2017::ToMapSize( Tank2017::gBulletScreenW);//Tank2017::gBulletWidth / Tank2017::gGridUnitSize;
 	switch( this->GetDir() )
 	{
 	case enDirRight:
 		{
 			mPos.x += this->GetWidth();
-			mPos.y += this->GetHeight() / 2 - Tank2017::gBulletHeight / 2;
+			mPos.y += this->GetHeight() / 2 - nBulletH / 2;
 			break;
 		}
 	case enDirLeft:
 		{
-			mPos.x -= Tank2017::gBulletWidth;
-			mPos.y += this->GetHeight() / 2 - Tank2017::gBulletHeight / 2;
+			mPos.x -= nBulletW;
+			mPos.y += this->GetHeight() / 2 - nBulletH / 2;
 			break;
 		}
 	case enDirUp:
 		{
-			mPos.x += this->GetWidth() / 2 - Tank2017::gBulletWidth / 2;
-			mPos.y -= Tank2017::gBulletHeight;
+			mPos.x += this->GetWidth() / 2 - nBulletW  / 2;
+			mPos.y -= nBulletH;
 			break;
 		}
 	case enDirDown:
 		{
-			mPos.x += this->GetWidth() / 2 - Tank2017::gBulletWidth / 2;
+			mPos.x += this->GetWidth() / 2 - nBulletW / 2;
 			mPos.y += this->GetHeight();
 			break;
 		}

@@ -6,6 +6,8 @@
 #include "GameFrame.h"
 #include "GlobalFunction.h"
 
+using namespace Tank2017;
+
 
 #define IDI_TANK2017_UPDATE			(1)		//更新定时器，暂用定时器驱动主逻辑
 
@@ -59,8 +61,8 @@ int GameFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	int nYBorder = windowRect.Height() - clientRect.Height();
 
 	//设置窗口大小
-	int nWidth = 940;		//窗口宽
-	int nHeight = 680;		//窗口高
+	int nWidth = gGameAreaW;		//窗口宽
+	int nHeight = gGameAreaH;		//窗口高
 	int nGameInfoWidth = 204; //游戏信息视图
 	SetWindowPos( NULL, 0, 0, nWidth + nXBorder, nHeight + nYBorder, SWP_NOMOVE );
 

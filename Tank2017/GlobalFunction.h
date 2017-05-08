@@ -18,4 +18,19 @@ namespace Tank2017
 	 * @brief 停止音乐
 	*/
 	void StopMusic( LPCTSTR pszFileName );
+
+	/**
+	 * @brief 转换成地图单位大小
+	 * @param nScreenSize 屏幕单位大小
+	*/
+	int ToMapSize( int nScreenSize );
+
+	/**
+	 * @brief 转换成屏幕单位大小
+	 * @param nMapSize 地图单位大小
+	*/
+	int ToScreenSize( int nMapSize );
+
+
+
 }

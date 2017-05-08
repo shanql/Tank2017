@@ -6,7 +6,7 @@
 #include "tst_PlaySound.h"
 #include "tst_PlaySoundDlg.h"
 #include "afxdialogex.h"
-#include "../../Tank2017/MCIPlaySndManager.h"
+#include "../../Tank2017/MCIPlay/MCIPlaySndManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

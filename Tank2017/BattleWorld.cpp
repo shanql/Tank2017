@@ -8,7 +8,7 @@
 #include "GlobalFunction.h"
 
 
-
+using namespace Tank2017;
 
 BattleWorld::BattleWorld(void)
 {
@@ -125,7 +125,8 @@ Entity* BattleWorld::CreateEntity( EntityType enEntityType, int xPos, int yPos,
 	case enBullet:
 		{
 			Bullet* pBullet = new Bullet;
-			pBullet->Initialize( 1, 1 );
+			pBullet->Initialize( ToMapSize(gBulletScreenW),
+				ToMapSize(gBulletScreenH) );
 			pEntity = pBullet;
 			break;
 		}
