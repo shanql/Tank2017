@@ -69,6 +69,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\MapEditor.ico"
+IDI_ICON_IRON_1_WALL    ICON                    "res\\Iron_1_wall.ico"
+IDI_ICON_IRON_4_WALL    ICON                    "res\\Iron_4_wall.ico"
+IDI_ICON_WALL           ICON                    "res\\Wall.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -83,7 +86,9 @@ BEGIN
     END
     POPUP "绘图项(&D)"
     BEGIN
-        MENUITEM "铁块",                          ID_32771
+        MENUITEM "单格铁墙",                        ID_IRON_1_WALL
+        MENUITEM "四格铁墙",                        ID_IRON_4_WALL
+        MENUITEM "普通土墙",                        ID_NORMAL_WALL
     END
     POPUP "帮助(&H)"
     BEGIN
@@ -185,6 +190,26 @@ BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BMP_TOOLBAR         BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR1 TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_BUTTON32777
+    BUTTON      ID_BUTTON32778
+    BUTTON      ID_BUTTON32779
+END
 
 
 /////////////////////////////////////////////////////////////////////////////

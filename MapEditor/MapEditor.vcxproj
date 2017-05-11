@@ -122,7 +122,11 @@
     <None Include="res\MapEditor.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\Iron_1_wall.ico" />
+    <Image Include="res\Iron_4_wall.ico" />
     <Image Include="res\MapEditor.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\Wall.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
